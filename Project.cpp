@@ -156,3 +156,78 @@ void hostel::available_room()
         }
     }
 }
+void hostel::display_room()
+{
+
+    printf("\t\t\t\t\t\tDisplay All Room Information\n");
+    printf("\t\t\t\t\t============================================");
+    printf("\n\n");
+    printf("\t\t   Room Number\t\t Floor Number \t\t Room Category \t\t Room Status\n");
+    printf("\t\t  ============\t\t===============\t\t=============\t\t==============\n\n");
+    for(int j=0; j<rnumber.size(); j++)
+    {
+        cout << right  << setw(25) <<  this->rnumber[j] << right << setw(22) << this->rfloor[j]  << setw(22) << rcategory[j] << setw(27) << "Available"<< '\n';
+    }
+    cout << "\n";
+}//end display_room function============================
+void hostel::update_room()
+{
+    printf("\t\t\t\t\t\tUpdate Room Information\n");
+    printf("\t\t\t\t\t=========================================");
+
+    printf("\n\n");
+    int found=0;
+    int num,floor,category;
+    cout << "\t\t\t\t\t\tEnter Room Number: ";
+    while(cin >> num)
+    {
+        if(num==-1)break;
+        int i,position,found=0;
+        position=room_position(num);
+
+        if(position!=-1)
+        {
+            cout << "\t\t\t\t\t\tEnter Room Floor: ";
+            cin >> floor;
+            rfloor[position]=floor;
+            cout << "\t\t\t\t\t\tEnter Room Category:";
+            cin >> category;
+            rcategory[position]=category;
+            cout << "\n\t\t\t\t\tSucessfully Update Room Information Info\n\n";
+            found=1;
+        }
+        else
+        {
+            cout << "\n\t\t\t\t\tSorry No user id found for name update\n\n";
+            cout << "\t\t\t\t\tEnter Room Number or exit press (-1): ";
+        }
+        if(found==1)break;
+
+    }
+}
+void hostel::get_roominfo()
+{
+    int flag=0;
+    int rnum,rfloor1,rcat;
+    int c1=0;
+    ifstream info;
+    info.open("room.txt");
+    while(!info.eof())
+    {
+        string name1[2],name2[2],name3[3];
+
+        if(c1==0 || c1==1)
+        {
+            info >> name1[0] >> name2[0] >> name3[0];
+        }
+        else
+        {
+            info >> rnum >> rfloor1 >> rcat;
+            rnumber.push_back(rnum);
+            rfloor.push_back(rfloor1);
+            rcategory.push_back(rcat);
+        }
+        c1++;
+    }
+    info.close();
+}
