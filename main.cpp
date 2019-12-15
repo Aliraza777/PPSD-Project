@@ -137,3 +137,79 @@ void hostel::display_room()
     cout << "\n";
 }//end display_room function============================
 
+//start room_close function()=======================================================
+void hostel::room_close()
+{
+
+    ofstream sclear ("room.txt", std::ios::out | std::ios::trunc);
+    sclear.close();
+
+    int i;
+    ofstream sinsert;
+    sinsert.open("room.txt", std::ios_base::app);
+    for(i=0; i<rnumber.size()+2; i++)
+    {
+        if(i==0)
+        {
+            sinsert << "Rnum" << " " << "Floor"  << " " << "Category"<<  endl;
+        }
+        else if(i==1)
+        {
+            sinsert << "--" << " ------------" << " " << "------------";
+        }
+        else
+        {
+            sinsert << "\n" << rnumber[i-2] << " " << rfloor[i-2] << " " << rcategory[i-2];
+        }
+    }
+    sinsert.close();
+}
+//end room_close() function=====================================================================
+//starting delete_student() function===============================
+void hostel::delete_student()
+{
+    printf("\t\t\t\t\t\tDelete Student Information\n");
+    printf("\t\t\t\t\t============================================");
+
+    printf("\n\n");
+
+    int rid,position,i,j,found=0;
+    vector<int>sid,room;
+    vector<string>sname;
+    cout << "\t\t\t\t\t\tEnter Student Number: ";
+    while(cin >> rid)
+    {
+        if(rid==-1)break;
+        position=idposition(rid);
+        if(position!=-1)
+        {
+            found=1;
+            for(i=0; i<position; i++)
+            {
+                sid.push_back(studentid[i]);
+                room.push_back(studentroom[i]);
+                sname.push_back(studentname[i]);
+            }
+            for(i=position; i<studentid.size()-1; i++)
+            {
+                sid.push_back(studentid[i+1]);
+                room.push_back(studentroom[i+1]);
+                sname.push_back(studentname[i+1]);
+            }
+            studentid=sid;
+            studentroom=room;
+            studentname=sname;
+            cout << "\t\t\t\t\tSucesully Delete Student Information\n\n";
+        }
+        else
+        {
+
+            cout << "\t\t\t\t\t\tStudent  Id Is Not Found\n";
+            cout << "\t\t\t\t\t\tEnter Student Id or exit pres (-1): ";
+        }
+        if(found==1)break;
+    }
+
+}
+//end delete student=========================================
+
