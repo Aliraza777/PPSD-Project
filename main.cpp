@@ -213,3 +213,108 @@ void hostel::delete_student()
 }
 //end delete student=========================================
 
+//start main function============================================
+int main()
+{
+
+    int n,pre,flag=0;
+
+    hostel ob1;
+
+    ob1.get_roominfo();
+    ob1.get_studentinfo();
+
+    ob1.welcome();
+    ob1.header();
+
+    printf("\t\t\t\tPlease Select Any Option: ");
+
+
+    while(cin >> n)
+    {
+        pre=n;
+        printf("\n\t==========================================================================================================\n\n");
+        flag=0;
+        //student option
+        if(pre==11)
+        {
+
+            ob1.display_student();
+        }
+        else if(pre==12)
+        {
+            ob1.add_student();
+
+        }
+        else if(pre==13)
+        {
+            ob1.search_student();
+        }
+
+        else if(pre==14)
+        {
+            ob1.update_student();
+        }
+        else if(pre==15)
+        {
+            ob1.delete_student();
+        }
+
+        //ens student option
+
+        else if(pre==21)
+        {
+            ob1.display_room();
+        }
+        else if(pre==22)
+        {
+            ob1.add_room();
+        }
+        else if(pre==23)
+        {
+            ob1.search_room();
+        }
+        else if(pre==24)
+        {
+            ob1.update_room();
+        }
+        else if(pre==25)
+        {
+            ob1.delete_room();
+        }
+        else if(pre==31)
+        {
+            ob1.available_room();
+        }
+        else if(pre==32)
+        {
+            ob1.search_student();
+        }
+
+        //end room object
+
+        else if(pre==0)
+        {
+            ob1.program_close();
+            break;
+        }
+        else if(pre==1)
+        {
+            flag=1;
+            ob1.header();
+        }
+        else
+        {
+            flag=1;
+            printf("\t\t\t\t\t\tYou Press Wrong Option\n\n");
+            ob1.header();
+        }
+
+        if(flag!=1)
+            printf("\n\t\t\t\tAre You Want To See Dashboard if Yes) 1 or No) 0 : ");
+        else     printf("\t\t\t\tPlease Select Any Option: ");
+
+    }
+    return 0;
+}
+//end main fubction
