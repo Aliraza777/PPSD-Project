@@ -16,6 +16,7 @@ public:
   int idposition(int sid);
   void program_close();
 
+void available_room();
 
   vector<int>rnumber;
   vector<int>rfloor;
@@ -26,7 +27,12 @@ public:
   int greator_rnum();
 
 };
-
+void hostel::program_close()
+{
+    student_clear();
+    student_insert();
+    room_close();
+}
 void hostel::add_room()
 {
 
@@ -69,3 +75,39 @@ void hostel::header()
     printf("\t\t\t\t\t0) Press '0' for Quit This Software\n\n");
 
 }
+void hostel::welcome()
+{
+    int i;
+    cout << "\n\n\t\t\t";
+    for(i=0; i<59; i++)
+    {
+        cout << "*";
+    }
+    cout << "\n";
+    cout << "\t\t\t*\t\t\t\t\t\t\t  *\n";
+    cout << "\t\t\t*\t\t\tWELCOME\t\t\t\t  *\n";
+    cout << "\t\t\t*\t\tHostel Management System\t\t  *\n";
+    cout << "\t\t\t*\t\t\t\t\t\t\t  *\n";
+    cout << "\t\t\t";
+    for(i=0; i<59; i++)
+    {
+        cout << "*";
+    }
+    cout << "\n";
+    system("pause");
+    system("cls");
+}
+int hostel::idposition(int sid)
+{
+
+    int i,position=-1;
+    for(i=0; i<studentid.size(); i++)
+    {
+        if(studentid[i]==sid)
+        {
+            position=i;
+            break;
+        }
+    }
+    return position;
+}//end position cheikh=====
