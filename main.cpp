@@ -203,6 +203,50 @@ void hostel::room_close()
     sinsert.close();
 }
 //end room_close() function=====================================================================
+
+
+//available room cheikh========================================================================
+int hostel::avi_room(int num)
+{
+    int res=0,i;
+    for(i=0; i<studentroom.size(); i++)
+    {
+        if(num==studentroom[i])
+        {
+            res=1;
+            break;
+        }
+    }
+    return res;
+}
+//end available room===========================================================================
+
+
+//start available room function ======================================================================
+void hostel::available_room()
+{
+    int i,status;
+
+    printf("\t\t\t\t\t\tAll Available Room Information\n");
+    printf("\t\t\t\t\t============================================");
+    printf("\n\n");
+
+    printf("\t\t   Room Number\t\t Floor Number \t\t Room Category \t\t Room Status\n");
+    printf("\t\t  ============\t\t===============\t\t=============\t\t==============\n\n");
+    for(i=0; i<rnumber.size(); i++)
+    {
+        int j=i;
+        status=avi_room(rnumber[i]);
+        if(status==0)
+        {
+            cout << right  << setw(25) <<  this->rnumber[j] << right << setw(22) << this->rfloor[j]  << setw(22) << rcategory[j] << setw(28) << "Available"<< '\n';
+        }
+    }
+}
+//end available room function========================================================================
+
+
+
 //starting delete_student() function===============================
 void hostel::delete_student()
 {
