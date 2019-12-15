@@ -23,8 +23,33 @@ void available_room();
   vector<int>rcategory;
 
 
+  void get_roominfo();
   void add_room();
+  void update_room();
+  void display_room();
+  void search_room();
+  void delete_room();
+  int room_position(int n);
   int greator_rnum();
+  int cheikh_room(int roomid);
+  int avi_room(int roomid);
+  void room_close();
+
+  //strarting student information enjin
+  vector<int> studentid;
+  vector<string>studentname;
+  vector<int>studentroom;
+
+  //student information function
+  int student_id_maker();
+  void get_studentinfo();
+  void display_student();
+  void search_student();
+  void update_student();
+  void add_student();
+  void delete_student();
+  void student_clear();
+  void student_insert();
 
 };
 void hostel::program_close()
@@ -111,3 +136,23 @@ int hostel::idposition(int sid)
     }
     return position;
 }//end position cheikh=====
+void hostel::available_room()
+{
+    int i,status;
+
+    printf("\t\t\t\t\t\tAll Available Room Information\n");
+    printf("\t\t\t\t\t============================================");
+    printf("\n\n");
+
+    printf("\t\t   Room Number\t\t Floor Number \t\t Room Category \t\t Room Status\n");
+    printf("\t\t  ============\t\t===============\t\t=============\t\t==============\n\n");
+    for(i=0; i<rnumber.size(); i++)
+    {
+        int j=i;
+        status=avi_room(rnumber[i]);
+        if(status==0)
+        {
+            cout << right  << setw(25) <<  this->rnumber[j] << right << setw(22) << this->rfloor[j]  << setw(22) << rcategory[j] << setw(28) << "Available"<< '\n';
+        }
+    }
+}
