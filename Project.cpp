@@ -11,6 +11,11 @@ public:
   {
       this->c=0;
   }
+  void header();
+  void welcome();
+  int idposition(int sid);
+  void program_close();
+
 
   vector<int>rnumber;
   vector<int>rfloor;
@@ -46,4 +51,21 @@ int hostel::greator_rnum()
 {
     sort(rnumber.begin(), rnumber.end(),greater<int>());
     return rnumber[0]+1;
+}
+void hostel::header()
+{
+    printf("\n");
+    printf("\t\t\t\t\t\tHostel Management Dashboard\n");
+    printf("\t\t\t\t\t============================================");
+
+    printf("\n\n");
+    printf("\t\t      Student Info\t\t\t Room Info\t\t\t    Report\n");
+    printf("\t\t    ==================\t\t      ================\t\t\t  ============\n\n");
+    printf("\t\t11) All Student Information    |     21) All Room Information    |      31) Available Room\n");
+    printf("\t\t12) Add Information\t       |     22) Add Room\t \t |\t32) Student Info\n");
+    printf("\t\t13) Search Information\t       |     23) Search Room\t \t \n");
+    printf("\t\t14) Edit Information\t       |     24) Edit Room\t \t \t\n");
+    printf("\t\t15) Delete Information\t       |     25) Delete Room\t\t \n\n");
+    printf("\t\t\t\t\t0) Press '0' for Quit This Software\n\n");
+
 }
