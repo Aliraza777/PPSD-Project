@@ -137,6 +137,44 @@ void hostel::display_room()
     cout << "\n";
 }//end display_room function============================
 
+//start search room=====================================
+void hostel::search_room()
+{
+    printf("\t\t\t\t\t\tSearch Room Information\n");
+    printf("\t\t\t\t\t============================================");
+
+    printf("\n\n");
+
+    int i,found=0,num,position,j;
+    cout << "\t\t\t\t\t\tEnter Room Number: ";
+    while(cin >> num)
+    {
+        if(num==-1)break;
+        position=room_position(num);
+        j=position;
+        if(position!=-1)
+        {
+
+            printf("\n\t\t   Room Number\t\t Floor Number \t\t Room Category \t\t Room Status\n");
+            printf("\t\t  ============\t\t===============\t\t=============\t\t==============\n\n");
+            cout << right  << setw(25) << this->rnumber[j] << right << setw(22) << this->rfloor[j]  <<
+                 setw(22) << rcategory[j] << setw(30) << "Avilavol"<< '\n';
+            found=1;
+            cout << "\n";
+        }
+        else
+        {
+            cout << "\n\t\t\t\t\tSorry Room Number is not found\n\n";
+            cout << "\t\t\t\t\tEnter Room Number or exit press (-1): ";
+
+        }
+        if(found==1)break;
+    }
+}//end search room information==========================================================================
+
+
+//start room_close function()=======================================================
+
 //start room_close function()=======================================================
 void hostel::room_close()
 {
