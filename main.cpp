@@ -113,3 +113,27 @@ void hostel::delete_room()
 }//end delete room function==================================
 
 
+
+void hostel::program_close()
+{
+    student_clear();
+    student_insert();
+    room_close();
+}
+
+//display room info(display all student  information form array)=========================
+void hostel::display_room()
+{
+
+    printf("\t\t\t\t\t\tDisplay All Room Information\n");
+    printf("\t\t\t\t\t============================================");
+    printf("\n\n");
+    printf("\t\t   Room Number\t\t Floor Number \t\t Room Category \t\t Room Status\n");
+    printf("\t\t  ============\t\t===============\t\t=============\t\t==============\n\n");
+    for(int j=0; j<rnumber.size(); j++)
+    {
+        cout << right  << setw(25) <<  this->rnumber[j] << right << setw(22) << this->rfloor[j]  << setw(22) << rcategory[j] << setw(27) << "Available"<< '\n';
+    }
+    cout << "\n";
+}//end display_room function============================
+
