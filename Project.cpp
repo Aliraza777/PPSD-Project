@@ -231,3 +231,127 @@ void hostel::get_roominfo()
     }
     info.close();
 }
+void hostel::room_close()
+{
+
+    ofstream sclear ("room.txt", std::ios::out | std::ios::trunc);
+    sclear.close();
+
+    int i;
+    ofstream sinsert;
+    sinsert.open("room.txt", std::ios_base::app);
+    for(i=0; i<rnumber.size()+2; i++)
+    {
+        if(i==0)
+        {
+            sinsert << "Rnum" << " " << "Floor"  << " " << "Category"<<  endl;
+        }
+        else if(i==1)
+        {
+            sinsert << "--" << " ------------" << " " << "------------";
+        }
+        else
+        {
+            sinsert << "\n" << rnumber[i-2] << " " << rfloor[i-2] << " " << rcategory[i-2];
+        }
+    }
+    sinsert.close();
+}
+void hostel::update_student()
+{
+    printf("\t\t\t\t\t\tUpdate Student Information\n");
+    printf("\t\t\t\t\t=========================================");
+
+    printf("\n\n");
+    int found=0;
+    int num,floor,category,rnum1;
+    string sname;
+    cout << "\t\t\t\t\t\tEnter Student Id: ";
+    while(cin >> num)
+    {
+        if(num==-1)break;
+        int i,position,found=0;
+        position=idposition(num);
+
+        if(position!=-1)
+        {
+            cout << "\t\t\t\t\t\tEnter Student Name: ";
+            cin >> sname;
+            studentname[position]=sname;
+            cout << "\t\t\t\t\t\tEnter Room Number:";
+            cin >> rnum1;
+            studentroom[position]=rnum1;
+            cout << "\n\t\t\t\t\tSucessfully Update Room Information Info\n\n";
+            found=1;
+        }
+        else
+        {
+            cout << "\n\t\t\t\t\tSorry No user id found for name update\n\n";
+            cout << "\t\t\t\t\tEnter Student Id or exit press (-1): ";
+        }
+        if(found==1)break;
+
+    }
+}
+void hostel::add_student()
+{
+    int sid,rfound,found=0;
+    int room;
+    string name;
+    sid=student_id_maker();
+    cout << "\n\t\t\t\t\t Student Id is: " << sid  << "\n";
+    cout << "\t\t\t\t\t Enter student name: ";
+    cin >> name;
+    cout << "\t\t\t\t\t Enter Room Number: ";
+    while(cin >> room)
+    {
+        rfound=cheikh_room(room);
+        if(rfound!=0)
+        {
+            found=1;
+            break;
+
+        }
+        else
+        {
+            cout << "\n\t\t\t\t\tSorry Room Number is not found\n\n";
+            cout << "\t\t\t\t\tAvilabol Room Number is:\n";
+            cout  << "\t\t\t\t\t";
+            for(int i=0; i<rnumber.size(); i++)
+            {
+                cout << rnumber[i] << ",";
+            }
+            cout << "\n\t\t\t\t\tEnter Correct Room Number: ";
+        }
+    }
+    if(found==1)
+    {
+        studentid.push_back(sid);
+        studentname.push_back(name);
+        studentroom.push_back(room);
+        cout << "\n\t\t\t\t\tSucessfull Student Information Add\n";
+    }
+}
+void hostel::student_insert()
+{
+    int i;
+    ofstream sinsert;
+    sinsert.open("information.txt", std::ios_base::app);
+    for(i=0; i<studentid.size()+2; i++)
+    {
+        if(i==0)
+        {
+            sinsert << "Id" << " " << "StudentName"  << " " << "Room"<<  endl;
+        }
+        else if(i==1)
+        {
+            sinsert << "--" << " ------------" << " " << "-----";
+        }
+        else
+        {
+            sinsert << "\n" << studentid[i-2] << " " << studentname[i-2] << " " << studentroom[i-2];
+        }
+    }
+    sinsert.close();
+}
+//end student insert() function====================================
