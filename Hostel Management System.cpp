@@ -161,6 +161,14 @@ void hostel::update_room()
     cout << "\t\t\t\t\t\tEnter Room Number: ";
     while(cin >> num)
     {
+      int available=avi_room(num);
+      if(available==1)
+        {
+          std::cout << "\t\t\t\t\t\tSorry this room is already occupied:" << '\n';
+          std::cout << "\t\t\t\t\t\tSo information can not be Edited:" << '\n';
+
+          break;
+        }
         if(num==-1)break;
         int i,position,found=0;
         position=room_position(num);
