@@ -253,10 +253,10 @@ void hostel::search_room()
         if(position!=-1)
         {
 
-            printf("\n\t\t   Room Number\t\t Floor Number \t\t Room Category \t\t Room Status\n");
-            printf("\t\t  ============\t\t===============\t\t=============\t\t==============\n\n");
+            printf("\n\t\t   Room Number\t\t Floor Number \t\t Room Category \n");
+            printf("\t\t  ============\t\t===============\t\t=============\n\n");
             cout << right  << setw(25) << this->rnumber[j] << right << setw(22) << this->rfloor[j]  <<
-                 setw(22) << rcategory[j] << setw(30) << "Avilavol"<< '\n';
+                 setw(22) << rcategory[j] <<  '\n';
             found=1;
             cout << "\n";
         }
@@ -623,6 +623,12 @@ void hostel::add_student()
     cout << "\t\t\t\t\t Enter Room Number: ";
     while(cin >> room)
     {
+      int available=avi_room(room);
+      if(available==1)
+      {
+        std::cout << "\t\t\t\t\t\tSorry this room is already occupied:" << '\n';
+        break;
+      }
         rfound=check_room(room);
         if(rfound!=0)
         {
@@ -719,7 +725,7 @@ void hostel::search_student()
         if(position!=-1)
         {
 
-            printf("\n\t\t   Room Number\t\t Floor Number \t\t Room Category \t\t Room Status\n");
+            printf("\n\t\t   StudentID\t\t Student Name \t\t Room Number \t\t Room Category\n");
             printf("\t\t  ============\t\t===============\t\t=============\t\t==============\n\n");
 
             int res=1;
